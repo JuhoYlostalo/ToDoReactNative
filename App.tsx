@@ -19,7 +19,7 @@ export default function App() {
   const [input, setInput] = useState('')
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       try {
         const json = await AsyncStorage.getItem(STORAGE_KEY)
         if (json) setTasks(JSON.parse(json))
@@ -29,21 +29,21 @@ export default function App() {
     })()
   }, [])
 
-   useEffect(() => {
+  useEffect(() => {
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
-  },[tasks])
+  }, [tasks])
 
 
   const addTask = () => {
     if (input.trim()) {
       setTasks(prev => [
-        ...prev, {id: Date.now().toString(), name: input.trim(), done: false},
+        ...prev, { id: Date.now().toString(), name: input.trim(), done: false },
       ])
       setInput('')
     }
   }
 
-   const toggleTask = (id: string) => {
+  const toggleTask = (id: string) => {
     setTasks(prev =>
       prev.map(task =>
         task.id === id ? { ...task, done: !task.done } : task
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: 'center' as const,
   },
-  
+
 
 });
