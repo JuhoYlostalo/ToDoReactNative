@@ -4,7 +4,7 @@ import React from 'react'
 interface inputProps {
     input: string,
     setInput: React.Dispatch<React.SetStateAction<string>>,
-    addTask: () => void
+    addTask: (text: string) => void
 }
 
 const InputRow: React.FC<inputProps> = ({ input, setInput, addTask }) => {
@@ -16,7 +16,7 @@ const InputRow: React.FC<inputProps> = ({ input, setInput, addTask }) => {
                 onChangeText={setInput}
                 placeholder='Enter task'
             />
-            <Text style={styles.text} onPress={addTask}>Save</Text>
+            <Text style={styles.text} onPress={() =>addTask(input)}>Save</Text>
         </View>
     )
 }
